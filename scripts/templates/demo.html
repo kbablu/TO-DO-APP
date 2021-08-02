@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<p>
+    Hello world!
+</p>
+<p>
+    <!-- look for a variable named name and set its value here -->
+    {{ name }}
+</p>
+
+<ul>
+    <!-- Trying to go through a data structure named list.
+A li element is created for each element of the data structure,
+inside which the value of the item is set. -->
+    {% for value in list %}
+    <li>{{ value }}</li>
+    {% endfor %}
+</ul>
+
+
+<table>
+    <tr>
+        <th>
+            name
+        </th>
+    </tr>
+    <!-- Trying to go through a data structure called objects.
+A separate row is created in the table for each object.
+When creating each table cell, it is assumed that
+an object is an object, and that element has a variable name.
+The value of the variable is set to the value of the cell. -->
+    {% for item in objects %}
+    <tr>
+        <td>
+            {{ item.name }}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
