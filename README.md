@@ -1,1 +1,2 @@
-# ToDoApp
+# ToDoApp  
+Run the `run.py`.
