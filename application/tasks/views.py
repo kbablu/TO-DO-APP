@@ -1,5 +1,5 @@
 from flask import redirect, render_template, request, url_for
-from flask_login import login_requierd
+from flask_login import login_required
 
 from application import app, db
 from application.tasks.models import Task
@@ -18,6 +18,7 @@ def tasks_form():
 
 
 @app.route("/tasks/<task_id>/", methods = ["POST"])
+@login_required
 def tasks_set_done(task_id):
 
     t = Task.query.get(task_id)
@@ -27,13 +28,15 @@ def tasks_set_done(task_id):
 
 
 @app.route("/tasks/", methods=["POST"])
+@login_required
 def task_create():
     form = TaskForm(request.form)
 
     if not form.validate():
         return render_template("new.html", form=form)
 
-    t = Task(request.form.get("name"))
+    # t = Task(request.form.get("name"))
+    t = Task(form.name.data)
     t.done = form.done.data
 
     db.session().add(t)
